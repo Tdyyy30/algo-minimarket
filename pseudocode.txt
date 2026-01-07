@@ -1,0 +1,32 @@
+BEGIN
+    INPUT n
+    IF n < 1 OR n > 50 THEN STOP
+
+    total ← 0
+    FOR i ← 1 TO n DO
+        INPUT nama, harga, qty
+        IF harga < 0 OR qty < 0 THEN STOP
+        subtotal ← harga × qty
+        total ← total + subtotal
+    ENDFOR
+
+    INPUT member
+    INPUT metode
+
+    diskon ← 0
+    IF member = 1 THEN diskon ← 5% × total
+    IF total ≥ 200000 THEN diskon ← diskon + 10% × total
+
+    pajak ← 11% × total
+    grand ← total + pajak − diskon
+
+    IF metode = CASH THEN
+        INPUT bayar
+        IF bayar < grand THEN STOP
+        OUTPUT kembalian
+    ELSE
+        OUTPUT "Pembayaran non-cash"
+    ENDIF
+
+    OUTPUT grand
+END
